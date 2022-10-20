@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClientRequest;
 use App\Models\Client;
-use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
@@ -12,13 +12,13 @@ class ClientController extends Controller
         return response()->json(Client::get());
     }
 
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
         Client::create($request->input());
         return response()->json([], 201);
     }
 
-    public function update(Request $request, int $id)
+    public function update(ClientRequest $request, int $id)
     {
         Client::findOrFail($id)->update($request->input());
         return response()->json([], 204);
