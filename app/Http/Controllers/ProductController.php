@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -12,13 +12,13 @@ class ProductController extends Controller
         return response()->json(Product::get());
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         Product::create($request->input());
         return response()->json([], 201);
     }
 
-    public function update(Request $request, int $id)
+    public function update(ProductRequest $request, int $id)
     {
         Product::findOrFail($id)->update($request->input());
         return response()->json([], 204);
